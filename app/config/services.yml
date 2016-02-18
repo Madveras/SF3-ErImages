@@ -1,0 +1,15 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+imports:
+    - { resource: '@ErImageBundle/Resources/config/services.yml' }
+    
+services:
+    kernel.listener.command_dispatch:
+        class: ErImageBundle\EventListener\ConsoleExceptionListener
+        arguments:
+            logger: '@logger'
+        tags:
+            - { name: kernel.event_listener, event: console.exception }

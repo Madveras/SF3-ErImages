@@ -1,0 +1,38 @@
+{% extends "erbase.html.twig" %}
+{% set tab='banner'%}
+
+{%block metas %}
+  {{ parent() }}
+  {% if download %}
+  <META http-equiv="refresh" content="0;URL={{ path('download_banner',{'id':banner.id})}}"> 
+  {%endif%}
+  {%endblock%}
+{% block title %}Ver banner{%endblock title%}
+{% block heading %}
+  <div class="col-lg-12">
+      <h1 class="page-header">
+          {{banner.cottage}}
+          <small>{{banner.getCreatedAt|date('d-m-Y')}} </small>
+      </h1>
+      <ol class="breadcrumb">
+          <li>
+              <i class="fa fa-dashboard"></i>  <a href="{{ path('list_banner') }}">Banners</a>
+          </li>
+          <li class="active">
+              <i class="fa fa-file-image-o"></i> {{banner.cottage}}
+          </li>
+      </ol>
+  </div>
+{% endblock heading %}
+
+{% block body %}
+
+<div class="col-lg-6">
+  <div class="alert alert-info">
+     <i class="fa fa-info-circle"></i> Pincha en el banner para descargarlo
+  </div>
+  <a href="{{ path('download_banner',{'id':banner.id})}}"><img src="/{{banner.file}}" /></a>
+</div>
+<ul>
+
+{% endblock body%}

@@ -1,0 +1,49 @@
+{% extends "erbase.html.twig" %}
+{% set tab='banner'%}
+{% block title %}Ver banner{%endblock title%}
+{% block heading %}
+  <div class="col-lg-12">
+      <h1 class="page-header">
+          Banners Creados
+       </h1>
+      <ol class="breadcrumb">
+          <li>
+              <i class="fa fa-dashboard"></i>  <a href="{{ path('list_banner') }}">Banners</a>
+          </li>
+      </ol>
+  </div>
+{% endblock heading %}
+
+{% block body %}
+                    <div class="col-lg-12">
+                      {% if banners|length > 10 %}
+                      <a href="{{ path('create_banner') }}" class="btn btn-danger"><span class="fa fa-plus-circle"> </span> Nuevo Banner</a>
+                      {% endif %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Casa</th>
+                                        <th>creado</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    {%for banner in banners %}
+                                        <td>{{banner.cottage}}</td>
+                                        <td>{{banner.getCreatedAt|date('d-m-Y')}}</td>
+                                        <td><a href="{{path('show_banner',{'id':banner.id})}}"><i class="fa fa-eye"></i> Ver banner</a></td>
+                                        <td><a href="{{path('download_banner',{'id':banner.id})}}"><i class="fa fa-save"></i> Descargar</a></td>
+                                        <td><a href="{{path('delete_banner',{'id':banner.id})}}"><i class="fa fa-trash"></i> Eliminar</a></td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                                
+                        <a href="{{ path('create_banner') }}" class="btn btn-danger"><span class="fa fa-plus-circle"> </span> Nuevo Banner</a>
+                    </div>
+{% endblock body%}

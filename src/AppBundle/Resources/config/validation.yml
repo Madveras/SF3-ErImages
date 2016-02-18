@@ -1,0 +1,5 @@
+## YAML Template.
+AppBundle\Entity\Product:
+    properties:
+        name:
+            - NotBlank: ~

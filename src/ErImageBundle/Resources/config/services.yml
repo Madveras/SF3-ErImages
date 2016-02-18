@@ -1,0 +1,17 @@
+services:
+  banner.utils:
+    class: ErImageBundle\Services\BannerUtils
+    arguments: ["@request_stack","@image.handling"]
+
+  medias.utils:
+    class: ErImageBundle\Services\MediasUtils
+    arguments: ["@image.handling","%er_image.medias%"]
+
+  #image.image_namer:
+  #  class: ErImageBundle\Uploader\Naming\ImageNamer
+
+  image.upload_listener:
+    class: ErImageBundle\EventListener\UploadListener
+    arguments: ["@doctrine.orm.entity_manager","@medias.utils","%kernel.root_dir%/../src/ErImageBundle/Resources/uploads/"]
+    tags:
+      - { name: kernel.event_listener, event: oneup_uploader.post_upload.gallery, method: onPostUpload }

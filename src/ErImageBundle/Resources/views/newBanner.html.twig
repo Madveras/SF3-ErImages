@@ -1,0 +1,55 @@
+{% extends "erbase.html.twig" %}
+{% set tab='banner'%}
+{% block title %}Nuevo banner{%endblock title%}
+{% block heading %}
+  <div class="col-lg-12">
+      <h1 class="page-header">
+          Nuevo banner
+      </h1>
+      <ol class="breadcrumb">
+          <li>
+              <i class="fa fa-dashboard"></i>  <a href="{{ path('list_banner') }}">Banners</a>
+          </li>
+          <li class="active">
+              <i class="fa fa-file-image-o"></i> Nuevo Banner
+          </li>
+      </ol>
+  </div>
+{% endblock heading %}
+
+{% block body %}
+<div class="col-lg-4 col-md-5 col-sm-7 col-xs-8">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+      {{ form_label(form.file1) }}
+      {{ form_widget(form.file1) }}
+    </div>
+    <div class="form-group">
+      {{ form_label(form.cottage) }}
+      {{ form_widget(form.cottage,{'attr':{'class':'form-control','style':'width: 160px'}}) }}
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.text) }}
+      {{ form_widget(form.text,{'attr':{'class':'form-control','rows':5,'placeholder':'"(cuidado con palabras o textos largos sin espacios o simbolos extraños)','style':'width: 160px'}}) }}
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.file2) }}
+      {{ form_widget(form.file2) }}
+    </div>
+    <div class="form-group">
+      {{ form_label(form.file3) }}
+      {{ form_widget(form.file3) }}
+    </div>
+    <div class="form-group">
+      {{ form_widget(form.view, {'attr':{'class':'btn btn-primary'}}) }}
+      {{ form_widget(form.save,{'attr':{'class':'btn btn-success ' ~ cansave}}) }}
+    </div>
+    {{ form_widget(form.file,{'attr':{'value':bannerImg}}) }}
+  {{ form_end(form) }}
+</div>
+<div class="col-lg-3">
+  <img src="{{ bannerImg}}" />
+</div>
+{% endblock body%}

@@ -1,0 +1,33 @@
+ErImageBundle\Entity\Banner:
+    type: entity
+    table: null
+    repositoryClass: ErImageBundle\Repository\BannerRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        cottage:
+            type: string
+            length: 255
+        file:
+            type: string
+            length: 255
+            unique: true
+        text:
+            type: text
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+              timestampable:
+                on: update
+    lifecycleCallbacks: {  }

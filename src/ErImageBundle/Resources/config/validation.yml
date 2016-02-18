@@ -1,0 +1,10 @@
+## YAML Template.
+ErImageBundle\Entity\Banner:
+    properties:
+        cottage:
+            - NotBlank: ~
+        text:
+            - NotBlank: ~
+        file:
+            - NotBlank: ~
+
