@@ -12,6 +12,6 @@ services:
 
   image.upload_listener:
     class: ErImageBundle\EventListener\UploadListener
-    arguments: ["@doctrine.orm.entity_manager","@medias.utils","%kernel.root_dir%/../src/ErImageBundle/Resources/uploads/"]
+    arguments: ["@doctrine.orm.entity_manager","@medias.utils","%kernel.root_dir%/../src/ErImageBundle/Resources/uploads/","@service_container"]
     tags:
       - { name: kernel.event_listener, event: oneup_uploader.post_upload.gallery, method: onPostUpload }

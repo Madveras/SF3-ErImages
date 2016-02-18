@@ -5,7 +5,7 @@ namespace ErImageBundle\EventListener;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oneup\UploaderBundle\Event\PostUploadEvent;
 use ErImageBundle\Services\MediasUtils;
-use Symfony\Component\HttpFoundation\File\Exception\UploadException;
+
 
 class UploadListener
 {
@@ -14,10 +14,10 @@ class UploadListener
      */
     private $om;
 
-    public function __construct(ObjectManager $om, MediasUtils $mediasUtils, $tmpupload)
+    public function __construct(ObjectManager $om, MediasUtils $mediasUtils, $tmpupload, \Symfony\Component\DependencyInjection\Container $container)
     {
-      ///\Symfony\Component\DependencyInjection\Container $container
-      
+
+        $this->container = $container;
         $this->om = $om;
         $this->mediasUtils = $mediasUtils;
         $this->tmpupload = realpath($tmpupload);
@@ -33,6 +33,15 @@ class UploadListener
       $movepath = $this->tmpupload . DIRECTORY_SEPARATOR . $gallery . DIRECTORY_SEPARATOR;
       
       $response = $this->mediasUtils->processUploadedFile($file,$movepath);
+      
+      if($response['success'])
+      {
+        $session = $this->container->get('session');
+        $session->getFlashBag()->add(
+            'download',
+            $gallery
+        );
+      }
 
       return;
     }

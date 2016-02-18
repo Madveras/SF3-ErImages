@@ -2,8 +2,8 @@
 {% set tab='images'%}
 {%block metas %}
   {{ parent() }}
-  {% if download %}
-  <META http-equiv="refresh" content="0;URL={{ path('download_images',{'gallery':download})}}"> 
+  {% if download|length %}
+  <META http-equiv="refresh" content="0;URL={{ path('download_images',{'gallery':download[0]})}}"> 
   {%endif%}
   {%endblock%}
 {% block title %}Upload Images{%endblock title%}
@@ -51,7 +51,8 @@ $(document).ready(function()
         multipart_params: {
             gallery: "{{ gallery }}"
         },
-        complete: function(){ location = '{{ path('index_images',{'download':gallery})}}'},
+        complete: function(){ location = '{{ path('index_images')}}'
+  },
         filters : [
             {title : "Image files", extensions : "jpg,gif,png,jpeg,JPG,JPEG,PNG,GIF"}
         ],

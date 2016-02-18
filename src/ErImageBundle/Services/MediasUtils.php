@@ -1,6 +1,8 @@
 <?php
 namespace ErImageBundle\Services;
 
+use Symfony\Component\HttpFoundation\File\Exception\UploadException;
+
 class MediasUtils {
   
   var $black = "#000000";
@@ -56,7 +58,7 @@ class MediasUtils {
       
       $file->move($movepath);
       $response['success'] = true;
-      
+
       return $response;  
   }
 }
