@@ -111,7 +111,7 @@ snc_redis:
         session:
             type: predis
             alias: session
-            dsn: redis://localhost/
+            dsn: redis://localhost/1
             logging: %kernel.debug%
     session:
       client: session

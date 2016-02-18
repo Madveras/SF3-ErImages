@@ -8,18 +8,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class ImagesController extends Controller
 {
     public function indexAction(Request $request)
     {              
-        $download = $request->get('download') ?: false;
+           
+        $session = $this->container->get('session');
+        $download = $session->getFlashBag()->get('download',array());
         
         return $this->render(
             'ErImageBundle:indexImage.html.twig',
-            array("download" => $download)
-        );
+             array('download'=>$download)
+            );
     }
     
     public function downloadAction(Request $request)
