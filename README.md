@@ -1,4 +1,3 @@
-default_project
-===============
+# SF3-ErImages
+App para el backend de oficinas para gestion de imagenes
 
-A Symfony project created on January 21, 2016, 11:17 am.
