@@ -1,0 +1,41 @@
+{% extends "erbase.html.twig" %}
+{% set tab='images'%}
+{%block metas %}
+  {{ parent() }}
+  {%endblock%}
+{% block title %}Gestor de Imagenes{%endblock title%}
+{% block heading %}
+  <div class="col-lg-12">
+      <h1 class="page-header">
+          Gestion de Imagenes
+       </h1>
+      <ol class="breadcrumb">
+          <li>
+              <i class="fa fa-dashboard"></i>  <a href="{{ path('index_images') }}">Imagenes</a>
+          </li>
+      </ol>
+  </div>
+{% endblock heading %}
+
+{% block body %}
+<div class="col-lg-12">
+{% for img in images %}
+  <a href="{{ asset("/uploads/" ~ gallery ~"/original/" ~ img.getBasename) }}" target="_blank">
+    <img class="img-thumbnail" src="{{ asset("/uploads/" ~ gallery ~"/152/" ~ img.getBasename) }}" alt="">
+  </a>  
+{% endfor%}
+</div>
+<div class="col-lg-12">
+         &nbsp;
+       </div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
+        <a href="{{ asset("/uploads/" ~ gallery ~".zip") }}" class="btn btn-warning"><span class="fa fa-download"> </span> Descargar en un ZIP <i class="fa fa-file-zip-o"></i></a>
+</div>
+<div class="col-lg-12">
+         &nbsp;
+       </div>
+
+                 
+
+{% endblock body%}
+
