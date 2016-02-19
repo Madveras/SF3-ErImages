@@ -15,12 +15,43 @@ class ImagesController extends Controller
 {
     public function indexAction(Request $request)
     {              
+        
+        $path = realpath("../web/uploads/"). DIRECTORY_SEPARATOR;
+                
+        $uploads = new Finder();
+        $uploads->directories()->in($path)->depth('== 0')->sortByName();
+        return $this->render(
+            'ErImageBundle:indexImage.html.twig',
+            array('uploads' => $uploads)
+        );
+    }
+    
+    public function viewAction(Request $request)
+    {
+      $gallery = $request->get('gallery');
+      $path = realpath("../web/uploads/"). DIRECTORY_SEPARATOR . $gallery . DIRECTORY_SEPARATOR . '34' . DIRECTORY_SEPARATOR ;
+      
+      $images = new Finder();
+      $images->files()->in($path)->sortByName();
+       
+      return $this->render(
+              'ErImageBundle:viewImage.html.twig',
+              array('images' => $images,
+                    'gallery' => $gallery
+                  )
+          );
+      
+    }
+    
+    public function uploadAction(Request $request)
+    {              
            
         $session = $this->container->get('session');
         $download = $session->getFlashBag()->get('download',array());
+        $session->getFlashBag()->clear();
         
         return $this->render(
-            'ErImageBundle:indexImage.html.twig',
+            'ErImageBundle:uploadImage.html.twig',
              array('download'=>$download)
             );
     }
@@ -33,7 +64,7 @@ class ImagesController extends Controller
         $files->files()->in($newpath);
         
         $zip = new \ZipArchive();
-        $zipName = 'fotos-'.date("YmdHis").".zip";
+        $zipName = $request->get('gallery').".zip";
         $zip->open('uploads/'. $zipName,  \ZipArchive::CREATE);
         
         foreach ($files as $f) {
