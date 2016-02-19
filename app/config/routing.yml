@@ -1,15 +1,11 @@
-acme_test:
-    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+er_image:
+    resource: "@ErImageBundle/Resources/config/routing.yml"
     prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
     
-erImage:
-    resource: "@ErImageBundle/Controller/"
-    type:     annotation
-
 # app/config/routing.yml
 lucky_number:
     path:     /lucky/number/{count}
@@ -36,44 +32,3 @@ update_product:
     path:      /product/update/{id}
     # uses a special syntax to point to the controller - see note below
     defaults:  { _controller: AppBundle:Default:update }
-    
-oneup_uploader:
-    resource: .
-    type: uploader
-    
-list_banner:
-    path:      /banner/list
-    # uses a special syntax to point to the controller - see note below
-    defaults:  { _controller: ErImageBundle:Banners:index }
-    
-create_banner:
-    path:      /banner/create
-    # uses a special syntax to point to the controller - see note below
-    defaults:  { _controller: ErImageBundle:Banners:create }
-    
-show_banner:
-    path:      /banner/{id}
-    # uses a special syntax to point to the controller - see note below
-    defaults:  { _controller: ErImageBundle:Banners:show }
-    
-download_banner:
-    path:      /banner/download/{id}
-    # uses a special syntax to point to the controller - see note below
-    defaults:  { _controller: ErImageBundle:Banners:download }
-    
-delete_banner:
-    path:      /banner/delete/{id}
-    # uses a special syntax to point to the controller - see note below
-    defaults:  { _controller: ErImageBundle:Banners:delete }
-    
-index_images:
-    path: /images/
-    defaults: { _controller: ErImageBundle:Images:index }
-    
-list_images:
-    path: /images/
-    defaults: { _controller: ErImageBundle:Images:index }
-    
-download_images:
-    path: /images/download/{gallery}
-    defaults: { _controller: ErImageBundle:Images:download }

@@ -1,0 +1,44 @@
+oneup_uploader:
+    resource: .
+    type: uploader
+    
+list_banner:
+    path:      /banner/list
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Banners:index }
+    
+create_banner:
+    path:      /banner/create
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Banners:create }
+    
+show_banner:
+    path:      /banner/{id}
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Banners:show }
+    
+download_banner:
+    path:      /banner/download/{id}
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Banners:download }
+    
+delete_banner:
+    path:      /banner/delete/{id}
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Banners:delete }
+    
+index_images:
+    path: /images/
+    defaults: { _controller: ErImageBundle:Images:index }
+    
+upload_images:
+    path: /images/upload
+    defaults: { _controller: ErImageBundle:Images:upload }
+    
+view_images:
+    path: /images/view/{gallery}
+    defaults: { _controller: ErImageBundle:Images:view }
+    
+download_images:
+    path: /images/download/{gallery}
+    defaults: { _controller: ErImageBundle:Images:download }
