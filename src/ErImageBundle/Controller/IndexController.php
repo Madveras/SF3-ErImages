@@ -13,7 +13,8 @@ class IndexController extends Controller
     public function indexAction(Request $request)
     {              
         return $this->render(
-            'ErImageBundle:indexIndex.html.twig'
+            'ErImageBundle:indexIndex.html.twig',
+                array('tab'=>false)
             );
     }
 }
