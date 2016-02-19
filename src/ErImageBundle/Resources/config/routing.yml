@@ -2,6 +2,10 @@ oneup_uploader:
     resource: .
     type: uploader
     
+dashboard:
+    path: /
+    defaults: { _controller: ErImageBundle:Index:index }
+    
 list_banner:
     path:      /banner/list
     # uses a special syntax to point to the controller - see note below
