@@ -8,12 +8,6 @@
   {%endblock%}
 {% block title %}Upload Images{%endblock title%}
 {% block heading %}
-  {% if download|length %}
-    <div class="alert alert-success">
-      <strong>¡Imagenes procesadas!</strong> Ahora se descargará el fichero ZIP generado. si no empieza la descarga pincha 
-      <a href="{{ asset('/uploads' ~ download[0] ~ '.zip') }}">aquí</a>.
-    </div>
-  {% endif %}
   <div class="col-lg-12">
       <h1 class="page-header">
           Gestion de Imagenes
@@ -33,6 +27,20 @@
 {% endblock heading %}
 
 {% block body %}
+  
+  {% if download|length %}
+    <div class=" col-lg-2">
+    </div>
+    <div class=" col-lg-8">
+      <div class="alert alert-success">
+        <strong>¡Imagenes procesadas!</strong> Ahora se descargará el fichero ZIP generado. Si no empieza la descarga pincha 
+        <a href="{{ asset('/uploads/' ~ download[0] ~ '.zip') }}">aquí</a>.
+      </div>
+    </div>
+    <div class=" col-lg-2">
+    </div>
+  {% endif %}
+  
                     <div class="col-lg-12">
                       <div id="fileupload">
                         
