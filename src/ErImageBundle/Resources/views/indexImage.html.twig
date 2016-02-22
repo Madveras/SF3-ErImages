@@ -29,15 +29,30 @@
          &nbsp;
     </div>
    {%endif%}
-    <div class="col-lg-3 col-md-4"><div class="list-group">
-          {% for dir in uploads %}
-            {%if (loop.index0 % 10 == 0 ) and loop.index0 > 1%}
-    </div></div>
-    <div class="col-lg-3 col-md-4"><div class="list-group">
-            {% endif %}
-            <a href="{{ path("view_images",{'gallery':dir.getBaseName()})}}" class="list-group-item"><i class="fa fa-search"></i>  {{dir.getBaseName()}} <i class="fa fa-file-image-o"></i></a>
-          {% endfor%}
-    </div></div>
+   
+   <div class="table-responsive">
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th>Subidas el dia ...</th>
+
+                  <th>Expiran el ... </th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+              {%for bucket in uploads %}
+                  <td>{{bucket.name}}</td>
+                  <td>{{bucket.getExpiresAt|date('d M Y')}}</td>
+                  <td><a href="{{path('view_images',{'gallery':bucket.getFolder})}}"><i class="fa fa-eye"></i> Ver Imagenes</a></td>
+                  <td><a href="{{path('delete_images',{'id':bucket.id})}}"><i class="fa fa-trash"></i> Eliminar</a></td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+    </div>
 
    
        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">

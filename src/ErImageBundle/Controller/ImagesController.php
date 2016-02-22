@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use ErImageBundle\Entity\Bucket;
 
 class ImagesController extends Controller
 {
@@ -17,9 +17,13 @@ class ImagesController extends Controller
     {              
         
         $path = realpath("../web/uploads/"). DIRECTORY_SEPARATOR;
+        
+        $MediasUtils = $this->get('medias.utils');
+        
+        $MediasUtils->deleteExpiredBuckets();
+        
+        $uploads = $this->getDoctrine()->getRepository('ErImageBundle:Bucket')->findAll();
                 
-        $uploads = new Finder();
-        $uploads->directories()->in($path)->depth('== 0')->sortByName();
         return $this->render(
             'ErImageBundle:indexImage.html.twig',
             array('uploads' => $uploads)
@@ -88,5 +92,18 @@ class ImagesController extends Controller
         
         exit;
     }
- 
+    
+    public function deleteAction(Bucket $bucket)
+    {
+        if (!$bucket) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($bucket);
+        $em->flush();    
+        
+        return $this->redirectToRoute('index_images');
+    }
 }

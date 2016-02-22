@@ -28,4 +28,6 @@ ErImageBundle\Entity\Bucket:
         medias:
             targetEntity: Media
             mappedBy: bucket
-    lifecycleCallbacks: {  }
+            cascade: [remove]
+    lifecycleCallbacks: 
+        prePersist: [ setExpiresAtValue ]

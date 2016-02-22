@@ -26,9 +26,7 @@
 {% block body %}
 <div class="col-lg-12">
 {% for img in images %}
-  <a href="{{ asset("/uploads/" ~ gallery ~"/original/" ~ img.getBasename) }}" target="_blank">
-    <img class="img-thumbnail" src="{{ asset("/uploads/" ~ gallery ~"/152/" ~ img.getBasename) }}" alt="">
-  </a>  
+  <a href="{{ asset("/uploads/" ~ gallery ~"/original/" ~ img.getBasename) }}" target="_blank"><img class="img-thumbnail" src="{{ asset("/uploads/" ~ gallery ~"/152/" ~ img.getBasename) }}" alt="" /></a>  
 {% endfor%}
 </div>
 <div class="col-lg-12">

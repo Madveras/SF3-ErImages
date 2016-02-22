@@ -5,13 +5,18 @@ services:
 
   medias.utils:
     class: ErImageBundle\Services\MediasUtils
-    arguments: ["@image.handling","%er_image.medias%"]
+    arguments: ["@image.handling","%er_image.medias%", "@doctrine.orm.default_entity_manager"]
 
   #image.image_namer:
   #  class: ErImageBundle\Uploader\Naming\ImageNamer
 
   image.upload_listener:
     class: ErImageBundle\EventListener\UploadListener
-    arguments: ["@doctrine.orm.entity_manager","@medias.utils","%kernel.root_dir%/../src/ErImageBundle/Resources/uploads/","@service_container"]
+    arguments: ["@doctrine.orm.entity_manager","@medias.utils","%kernel.root_dir%/../src/ErImageBundle/Resources/uploads/","@service_container","@doctrine.orm.default_entity_manager"]
     tags:
       - { name: kernel.event_listener, event: oneup_uploader.post_upload.gallery, method: onPostUpload }
+
+  bucket.listener:
+    class: ErImageBundle\EventListener\BucketListener
+    tags:
+        - { name: doctrine.event_listener, event: preRemove, connection: default  }

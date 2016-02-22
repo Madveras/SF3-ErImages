@@ -2,6 +2,7 @@
 namespace ErImageBundle\Services;
 
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
+use Doctrine\ORM\EntityManager;
 
 class MediasUtils {
   
@@ -10,10 +11,12 @@ class MediasUtils {
   var $grey = "#353535";
   var $blue = "#000099";
   
-  public function __construct($imagehandling, $config) {
+  public function __construct($imagehandling, $config, EntityManager $em) {
     $this->ih = $imagehandling;
     $this->path = $config['path'];
     $this->config = $config;
+    $this->em = $em;
+    
   }
   
   public function wideThumb($file,$size, $folder)
@@ -35,7 +38,17 @@ class MediasUtils {
     $image->save($this->path. DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . 'original' . DIRECTORY_SEPARATOR . $file->getBasename()); 
   }
   
-  public function processUploadedFile($file, $movepath)
+  public function deleteExpiredBuckets()
+  {
+    $buckets = $this->em->getRepository('ErImageBundle:Bucket')->findExpired();
+    foreach($buckets as $bucket)
+    {
+      $this->em->remove($bucket);
+    }
+    $this->em->flush();
+  }
+  
+  public function processUploadedFile($file, $movepath,$bucket)
   {
     
     if(!strstr($file->getMimeType(), "image/"))
@@ -56,10 +69,19 @@ class MediasUtils {
       
       $image->save($file->getPathname());
       
+      $identifier = explode('.',$file->getBasename());
+      $identifier = $identifier[0];
+      
+      $media = new \ErImageBundle\Entity\Media();
+      $media->setIdentifier($identifier);
+      $media->setBucket($bucket);
+      
       $file->move($movepath);
       $response['success'] = true;
+      
+      $this->em->persist($media);
+      $this->em->flush();
 
       return $response;  
   }
 }
-

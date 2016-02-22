@@ -10,4 +10,12 @@ namespace ErImageBundle\Repository;
  */
 class BucketRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function findExpired()
+  {
+    return $this->createQueryBuilder('b')
+            ->andWhere('b.expiresAt < :now')
+            ->setParameter('now', date('Y-m-d H:i:s'))
+            ->getQuery()
+            ->getResult();
+  }
 }

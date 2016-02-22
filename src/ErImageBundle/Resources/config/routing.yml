@@ -43,6 +43,11 @@ view_images:
     path: /images/view/{gallery}
     defaults: { _controller: ErImageBundle:Images:view }
     
+delete_images:
+    path:      /images/delete/{id}
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: ErImageBundle:Images:delete }
+    
 download_images:
     path: /images/download/{gallery}
     defaults: { _controller: ErImageBundle:Images:download }

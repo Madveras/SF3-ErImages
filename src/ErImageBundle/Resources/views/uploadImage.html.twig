@@ -51,15 +51,15 @@
 {% block stylesheets %}
   {{ parent() }}
   <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css" media="screen" />
-  <link href="{{ asset('bundles/erimg/js/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('bundles/erimage/js/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block javascript %}
   {{ parent() }}
    
 <script type="text/javascript" src="http://bp.yahooapis.com/2.4.21/browserplus-min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-<script src="{{ asset('bundles/erimg/js/plupload/js/plupload.full.min.js') }}"></script>
-<script src="{{ asset('bundles/erimg/js/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js') }}"></script>
+<script src="{{ asset('bundles/erimage/js/plupload/js/plupload.full.min.js') }}"></script>
+<script src="{{ asset('bundles/erimage/js/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js') }}"></script>
 <script type="text/javascript">
 {% set gallery = "now"|date('YmdHis') %}
 $(document).ready(function()

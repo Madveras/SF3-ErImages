@@ -136,8 +136,13 @@ class Bucket
      */
     public function setExpiresAt($expiresAt)
     {
-        $this->expiresAt = $expiresAt;
-
+        $this->expiresAt = new \DateTime(strtotime('next week'));
+        return $this;
+    }
+    
+    public function setExpiresAtValue()
+    {
+        $this->expiresAt = new \DateTime(date("Y-m-d H:i:s",strtotime('Monday next week')));
         return $this;
     }
 
