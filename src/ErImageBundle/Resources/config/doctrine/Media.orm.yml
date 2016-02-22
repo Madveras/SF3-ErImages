@@ -1,0 +1,28 @@
+ErImageBundle\Entity\Media:
+    type: entity
+    table: null
+    repositoryClass: ErImageBundle\Repository\MediaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        identifier:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+              timestampable:
+                on: create
+    manyToOne:
+        bucket:
+            targetEntity: Bucket
+            inversedBy: medias
+            joinColumn:
+                name: bucket_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
