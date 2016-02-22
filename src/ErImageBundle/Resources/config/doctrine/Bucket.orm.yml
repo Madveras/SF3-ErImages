@@ -1,0 +1,31 @@
+ErImageBundle\Entity\Bucket:
+    type: entity
+    table: null
+    repositoryClass: ErImageBundle\Repository\BucketRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        folder:
+            type: string
+            length: 255
+            unique: true
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+              timestampable:
+                on: create
+        expiresAt:
+            type: datetime
+    oneToMany:
+        medias:
+            targetEntity: Media
+            mappedBy: bucket
+    lifecycleCallbacks: {  }
