@@ -168,4 +168,3 @@ class Banner
         return $this->updatedAt;
     }
 }
-
