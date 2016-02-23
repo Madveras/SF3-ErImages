@@ -22,7 +22,7 @@ class ImagesController extends Controller
         
         $MediasUtils->deleteExpiredBuckets();
         
-        $uploads = $this->getDoctrine()->getRepository('ErImageBundle:Bucket')->paginated();
+        $uploads = $this->getDoctrine()->getRepository('ErImageBundle:Bucket')->paginated(1,100);
                 
         return $this->render(
             'ErImageBundle:indexImage.html.twig',
