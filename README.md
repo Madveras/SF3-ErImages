@@ -22,6 +22,8 @@ App para el backend de oficinas para gestion de imagenes
    - gestionar uploads del plupload mediante el bundle oneup_uploader
    - tareas de consola, Commands
    - parametros de configuración en config.yml para nuestro bundle => DependencyInjection
-   - Sesiones por redis
+   - Sesiones por redis, se necesita la sesion para el upload "huerfano"
+   - Mensajes flash
    - Listeners: eventos postUpload, Eventos de doctrine, preRemove (LifecycleEvent)
+   - Paginación resultados de busqueda.
 
