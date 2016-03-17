@@ -21,15 +21,7 @@
 {% endblock heading %}
 
 {% block body %}
-  {% if uploads|length > 10 %}
-   <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
-     <a href="{{ path('upload_images') }}" class="btn btn-danger"><span class="fa fa-plus-circle"> </span> Cargar Nuevas Fotos</a>
-   </div>
-   <div class="col-lg-12">
-         &nbsp;
-    </div>
-   {%endif%}
-   
+  
    <div class="table-responsive">
       <table class="table table-hover">
           <thead>
